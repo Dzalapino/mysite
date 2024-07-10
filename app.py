@@ -1,12 +1,15 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 
+
 app = Flask(__name__)
+
 
 # Configuration for SQLite database
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///results.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
+
 
 # Database model
 class QuizResult(db.Model):
@@ -17,10 +20,12 @@ class QuizResult(db.Model):
     def __repr__(self):
         return f'<QuizResult {self.username} - {self.score}%>'
 
+
 # Initialize the database
 @app.before_first_request
 def create_tables():
     db.create_all()
+
 
 @app.route('/', methods=['GET', 'POST'])
 def show_quiz():
@@ -64,8 +69,16 @@ def show_quiz():
 
     return render_template('quiz_template.html', best_score=best_score, best_score_author=best_score_author)
 
+
 @app.route('/result')
 def result():
     username = request.args.get('username', 'Anonymous')
     score = request.args.get('score', 0)
     return render_template('result_template.html', username=username, score=score)
+
+
+@app.route('/all_scores')
+def all_scores():
+    scores = QuizResult.query.order_by(QuizResult.score.desc()).all()
+    return render_template('all_scores_template.html', scores=scores)
+
