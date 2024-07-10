@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            position: relative;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+
+        .quiz-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .question {
+            margin-bottom: 20px;
+        }
+
+        .question h2 {
+            font-size: 18px;
+            color: #555;
+        }
+
+        .options {
+            margin-left: 20px;
+        }
+
+        .options input {
+            margin-right: 10px;
+        }
+
+        .submit-button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .submit-button:hover {
+            background-color: #0056b3;
+        }
+
+        .best-score {
+            margin: 20px 0;
+            text-align: right;
+            color: #333;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background: #fff;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>AI in Python Quiz</h1>
+        <div class="best-score">
+            {% if best_score and best_score_author %}
+                <p>Best Score: {{ best_score }}% by {{ best_score_author }}</p>
+            {% else %}
+                <p>No scores yet.</p>
+            {% endif %}
+        </div>
+        <form method="POST">
+            <!-- Question 1 -->
+            <div class="question">
+                <h2>1. What Python library is commonly used for machine learning?</h2>
+                <div class="options">
+                    <input type="radio" id="q1a" name="question1" value="pandas">
+                    <label for="q1a">Pandas</label><br>
+                    <input type="radio" id="q1b" name="question1" value="scikit-learn">
+                    <label for="q1b">Scikit-learn</label><br>
+                    <input type="radio" id="q1c" name="question1" value="flask">
+                    <label for="q1c">Flask</label>
+                </div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="question">
+                <h2>2. Which library is used for deep learning in Python?</h2>
+                <div class="options">
+                    <input type="radio" id="q2a" name="question2" value="tensorflow">
+                    <label for="q2a">TensorFlow</label><br>
+                    <input type="radio" id="q2b" name="question2" value="numpy">
+                    <label for="q2b">NumPy</label><br>
+                    <input type="radio" id="q2c" name="question2" value="beautifulsoup">
+                    <label for="q2c">BeautifulSoup</label>
+                </div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="question">
+                <h2>3. What does NLP stand for in the context of AI?</h2>
+                <div class="options">
+                    <input type="radio" id="q3a" name="question3" value="neural-linguistic-processing">
+                    <label for="q3a">Neural Linguistic Processing</label><br>
+                    <input type="radio" id="q3b" name="question3" value="natural-language-processing">
+                    <label for="q3b">Natural Language Processing</label><br>
+                    <input type="radio" id="q3c" name="question3" value="neuro-linguistic-programming">
+                    <label for="q3c">Neuro-Linguistic Programming</label>
+                </div>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="question">
+                <h2>4. What is a common application of AI in healthcare?</h2>
+                <div class="options">
+                    <input type="radio" id="q4a" name="question4" value="image-recognition">
+                    <label for="q4a">Image Recognition</label><br>
+                    <input type="radio" id="q4b" name="question4" value="data-mining">
+                    <label for="q4b">Data Mining</label><br>
+                    <input type="radio" id="q4c" name="question4" value="web-scraping">
+                    <label for="q4c">Web Scraping</label>
+                </div>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="question">
+                <h2>5. Which technique is used for clustering in machine learning?</h2>
+                <div class="options">
+                    <input type="radio" id="q5a" name="question5" value="linear-regression">
+                    <label for="q5a">Linear Regression</label><br>
+                    <input type="radio" id="q5b" name="question5" value="k-means">
+                    <label for="q5b">K-Means</label><br>
+                    <input type="radio" id="q5c" name="question5" value="logistic-regression">
+                    <label for="q5c">Logistic Regression</label>
+                </div>
+            </div>
+
+            <!-- Username field -->
+            <div class="question">
+                <h2>What is your name?</h2>
+                <input type="text" name="username" placeholder="Enter your name" required>
+            </div>
+
+            <input type="submit" value="Submit Answers" class="submit-button">
+        </form>
+    </div>
+    <footer>
+        Author: Jakub Podkomórka
+        <br>
+        Polish programming tutor, GameDev and tech enthusiast
+    </footer>
+</body>
+</html>
